@@ -4,7 +4,7 @@
 // Author:      Aleksandras Gluchovas
 // Modified by: Francesco Montorsi (6/1/2004)
 // Created:     2000/02/10
-// RCS-ID:      $Id$
+// RCS-ID:      $Id: keybinder.h,v 1.13 2005/07/15 21:12:01 frm Exp $
 // Copyright:   (c) Aleksandras Gluchovas and (c) Francesco Montorsi
 // Licence:     wxWidgets licence
 /////////////////////////////////////////////////////////////////////////////
@@ -20,7 +20,7 @@
 #endif
 
 // required includes
-#include "wx/keybinderdef.h"
+#include "keybinderdef.h"
 #include "wx/panel.h"
 #include "wx/dialog.h"
 #include "wx/listbox.h"
@@ -32,6 +32,7 @@
 #include "wx/combobox.h"
 #include "wx/app.h"
 
+#include "debugging.h"
 
 // The maximum number of shortcuts associated with each wxCmd.
 #define wxCMD_MAX_SHORTCUTS				3
@@ -59,7 +60,10 @@ class wxConfigBase;
 //! \note This class implements a lot of static utilities which
 //!       are used by the following classes.
 //!
-class WXDLLIMPEXP_KEYBINDER wxKeyBind
+//-v0.1- class WXDLLIMPEXP_KEYBINDER wxKeyBind
+// ----------------------------------------------------------------------------
+class  wxKeyBind
+// ----------------------------------------------------------------------------
 {
 protected:
 
@@ -181,7 +185,10 @@ public:		// static utilities
 //! Besides, the command has three other properties: a description string,
 //! a name string and an ID which should be unique for each wxKeyBinder.
 //!
-class WXDLLIMPEXP_KEYBINDER wxCmd
+//-v0.1-class WXDLLIMPEXP_KEYBINDER wxCmd
+// ----------------------------------------------------------------------------
+class wxCmd
+// ----------------------------------------------------------------------------
 {
 	// wxKeyBinder must be allowed to call #Exec()
 	friend class wxKeyBinder;
@@ -205,7 +212,8 @@ protected:		// static
 
 	//! The wxCmd-derived class creation function.
 	//! Such a function is required into wxCmd::Load.
-	typedef wxCmd *(*wxCmdCreationFnc)(int id);
+	//-v0.3 typedef wxCmd *(*wxCmdCreationFnc)(int id);
+	typedef wxCmd *(*wxCmdCreationFnc)(wxString cmdName, int id);
 
 	//! A registered type of wxCmd-derived class.
 	typedef struct {
@@ -225,6 +233,7 @@ public:		// static
 	//! Creates a new command of the given type with the given ID.
 	//! This function is used mainly in wxCmd::Load.
 	static wxCmd *CreateNew(int type, int id);
+    static wxCmd *CreateNew(wxString cmdName, int type, int id); //+v0.3
 
 	//! Adds a new command type to our static list.
 	static void AddCmdType(int type, wxCmdCreationFnc fnc);
@@ -295,7 +304,8 @@ public:
 	void AddShortcut(const wxString &key) {
 		if (m_nShortcuts >= wxCMD_MAX_SHORTCUTS) return;
 		if (key.IsEmpty()) return;
-		m_keyShortcut[m_nShortcuts++] = wxKeyBind(key);
+		//-v0.1- m_keyShortcut[m_nShortcuts++] = wxKeyBind(key);
+		m_keyShortcut[m_nShortcuts++] = key;
 		Update();
 	}
 
@@ -360,8 +370,10 @@ public:
 	// Getters
 	// ---------------------
 
-	wxKeyBind *GetShortcut(int n)				 { return &m_keyShortcut[n]; }
-	const wxKeyBind *GetShortcut(int n)	const	 { return &m_keyShortcut[n]; }
+	wxKeyBind *GetShortcut(int n)
+					 { return &m_keyShortcut[n]; }
+	const wxKeyBind *GetShortcut(int n)	const
+	            	 { return &m_keyShortcut[n]; }
 
 	wxAcceleratorEntry GetAccelerator(int n) const {
 		return GetShortcut(n)->GetAccelerator(m_nId);
@@ -401,7 +413,7 @@ protected:
 	virtual void Update() {}
 
 	//! Executes the command.
-	//! - "origin" is the object which generated the event that
+	//! - obj ("origin") is the object which generated the event that
 	//!   was recognized as a shortcut key associated to this class.
 	//! - "client" is the event handler which should receive the
 	//!   event associated with this command.
@@ -415,7 +427,10 @@ protected:
 //! However, we cannot use the WX_DECLARE_OBJARRAY macro
 //! because wxCmd is an abstract class and thus we need
 //! to keep simple pointers stored, not the objects themselves.
-class WXDLLIMPEXP_KEYBINDER wxCmdArray
+//-v0.1-class WXDLLIMPEXP_KEYBINDER wxCmdArray
+// ----------------------------------------------------------------------------
+class wxCmdArray
+// ----------------------------------------------------------------------------
 {
 	wxArrayPtrVoid m_arr;
 
@@ -444,7 +459,7 @@ public:
 };
 
 
-class wxKeyBinder;
+
 
 //! This is a wxEvtHandler which can be attached to any wxWindow-derived
 //! class. It handles only the key events calling a wxKeyBinder to process
@@ -453,9 +468,13 @@ class wxKeyBinder;
 //! In these cases wxBinderEvtHandler just returns and wxWidgets will call
 //! the next handler in the chain (which is usually the wxWindow which was
 //! attached to this wxBinderEvtHandler).
-class WXDLLIMPEXP_KEYBINDER wxBinderEvtHandler : public wxEvtHandler
+
+//-v0.1- class WXDLLIMPEXP_KEYBINDER wxBinderEvtHandler : public wxEvtHandler
+// ----------------------------------------------------------------------------
+class wxBinderEvtHandler : public wxEvtHandler
+// ----------------------------------------------------------------------------
 {
-	//! The wxKeyBinder called by wxBinderEvtHandler when receving a wxKeyEvent.
+	//! The wxKeyBinder called by wxBinderEvtHandler when receiving a wxKeyEvent.
 	wxKeyBinder *m_pBinder;
 
 	//! The target window which will process the keyevents if they're not
@@ -525,7 +544,10 @@ private:
 //! filtered for the hotkeys...
 //! wxBinderApp should avoid all calls to wxKeyBinderAttach filtering
 //! the events using the wxApp::FilterEvent() function.
-class WXDLLIMPEXP_KEYBINDER wxBinderApp : public wxApp
+//-v0.1-class WXDLLIMPEXP_KEYBINDER wxBinderApp : public wxApp
+// ----------------------------------------------------------------------------
+class wxBinderApp : public wxApp
+// ----------------------------------------------------------------------------
 {
 	wxKeyBinder *m_pGlobalBinder;
 	wxEvtHandler *m_pGlobalHdl;
@@ -579,7 +601,10 @@ public:		// accessors
 //!                 wxADD_KEYBINDER_SUPPORT macro inside the declaration
 //!                 of that window.
 //!
-class WXDLLIMPEXP_KEYBINDER wxKeyBinder : public wxObject
+//-v0.1-class WXDLLIMPEXP_KEYBINDER wxKeyBinder : public wxObject
+// ----------------------------------------------------------------------------
+class wxKeyBinder : public wxObject
+// ----------------------------------------------------------------------------
 {
 protected:
 
@@ -587,8 +612,8 @@ protected:
 	wxCmdArray m_arrCmd;
 
 	//! The array of windows attached to this keybinder.
-	//! These info are very important when deleting the keybinder
-	//! (which can automatically #Detach() himself).
+	//! This info is very important when deleting the keybinder
+	//! (which can automatically #Detach() itself).
 	//! Besides, with this array, something interesting could be
 	//! done in future (like global shortcuts: command events sent
 	//! to all attached windows even if the command shortcut comes
@@ -633,6 +658,8 @@ public:
 
 	wxKeyBinder() {}
 	wxKeyBinder(const wxKeyBinder &tocopy) { DeepCopy(tocopy); }
+
+
 	virtual ~wxKeyBinder() { DetachAll(); }
 
 
@@ -672,10 +699,13 @@ public:		// miscellaneous
 
 	//! Enables/disables all the wxBinderEvtHandler associated with
 	//! the windows we've been attached to.
-	void Enable(bool bEnable = TRUE) {
+	void Enable(bool bEnable = TRUE)
+	 {
 		for (int i=0; i < (int)m_arrHandlers.GetCount(); i++)
+		 {
 			((wxBinderEvtHandler*)m_arrHandlers.Item(i))->SetEvtHandlerEnabled(bEnable);
-	}
+		 }
+	 }
 
 	//! Attaches this class to the given window.
 	void Attach(wxWindow *p);
@@ -713,6 +743,8 @@ public:		// miscellaneous
 	//! Loads from the given wxConfig object a set of keybindings.
 	bool Load(wxConfigBase *p, const wxString &key = wxEmptyString);
 
+    //+v0.3 get name and description from loaded commands
+    bool GetNameandDescription(wxConfigBase* p, const wxString &key, wxString& strName, wxString& strDescription);
 
 
 	// Add functions
@@ -793,6 +825,9 @@ public:		// miscellaneous
 	wxCmdArray *GetArray()					{ return &m_arrCmd;	}
 	const wxCmdArray *GetArray() const		{ return &m_arrCmd; }
 
+    // returns True if window actually exists
+    bool winExists(wxWindow*);
+    bool winExistsRunner(wxWindow *pCheckit, wxWindow* pNodeWin);        //-lf- //-v0.1
 
 private:
 	DECLARE_CLASS(wxKeyBinder)
@@ -805,7 +840,10 @@ private:
 //! these are useful when you want to support more than one wxKeyBinder in
 //! your application to give to the user the possibility to choose among
 //! different keymapping schemes...
-class WXDLLIMPEXP_KEYBINDER wxKeyProfile : public wxKeyBinder
+//-v0.1-class WXDLLIMPEXP_KEYBINDER wxKeyProfile : public wxKeyBinder
+// ----------------------------------------------------------------------------
+class wxKeyProfile : public wxKeyBinder
+// ----------------------------------------------------------------------------
 {
 protected:
 
@@ -866,7 +904,7 @@ private:
 //! and to retrieve the profiles from a wxKeyConfigPanel after they
 //! have been added/removed/edited by the user.
 //!
-//! This class also holds a variable (#m_nSelected) which makes easier for
+//! This class also holds a variable (#m_nSelected) which makes it easier for
 //! the owner of the array to manage more than one key profile
 //! (this variables has sense only assuming that only one key profile at
 //!  time is selected into app's windows...).
@@ -875,7 +913,10 @@ private:
 //! However, please note that this variable is *not* updated in any way by
 //! wxKeyProfileArray itself: this is still owner's task which can use the
 //! #SetSelProfile and #GetSelProfile functions to access this variable.
-class WXDLLIMPEXP_KEYBINDER wxKeyProfileArray
+//-v0.1-class WXDLLIMPEXP_KEYBINDER wxKeyProfileArray
+// ----------------------------------------------------------------------------
+class wxKeyProfileArray
+// ----------------------------------------------------------------------------
 {
 	//! The array of pointers to the wxKeyProfiles.
 	//! Since this array hold pointers, instances of classes derived
@@ -886,7 +927,7 @@ class WXDLLIMPEXP_KEYBINDER wxKeyProfileArray
 	int m_nSelected;
 
 public:
-	wxKeyProfileArray() { m_nSelected=-1; }
+	wxKeyProfileArray() { m_nSelected=-1;}
 	wxKeyProfileArray(const wxKeyProfileArray &tocopy) { DeepCopy(tocopy); }
 	virtual ~wxKeyProfileArray() { Cleanup(); }
 
@@ -960,7 +1001,7 @@ public:
 	//! Detaches all the wxKeyProfiles from *all* their attached windows.
 	void DetachAll() {
 		for (int i=0; i<GetCount(); i++)
-			Item(i)->DetachAll();
+			Item(i)->DetachAll();       //v0.1-Bombs if frame is gone
 	}
 
 	//! Updates all the wxCmds contained.
@@ -995,7 +1036,8 @@ public:
 //!          the wxKeyMonitorTextCtrl displays exactly the string
 //!          "Ctrl+Shift+A"
 //!
-class WXDLLIMPEXP_KEYBINDER wxKeyMonitorTextCtrl : public wxTextCtrl
+//class /*-v0.1-WXDLLIMPEXP_KEYBINDER*/ wxKeyMonitorTextCtrl : public wxTextCtrl
+class wxKeyMonitorTextCtrl : public wxTextCtrl
 {
 public:
 	wxKeyMonitorTextCtrl(
@@ -1141,7 +1183,8 @@ private:
 //!    have added/removed profiles) using #GetProfiles(). The last selected
 //!    profile can be obtained using #GetSelProfile().
 //!
-class WXDLLIMPEXP_KEYBINDER wxKeyConfigPanel : public wxPanel
+//class /*-v0.1-WXDLLIMPEXP_KEYBINDER*/ wxKeyConfigPanel : public wxPanel
+class wxKeyConfigPanel : public wxPanel
 {
 public:
 
