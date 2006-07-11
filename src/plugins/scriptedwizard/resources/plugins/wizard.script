@@ -24,16 +24,19 @@ function BeginWizard()
     local wiz_type = Wizard.GetWizardType();
 
 	local intro_msg = _T("Welcome to the new Code::Blocks plugin wizard!\n" +
-						"This wizard will guide you to create a new Code::Blocks plugin.\n\n\n" +
-						"VERY IMPORTANT NOTE:\n\n" +
+						"This wizard will guide you to create a new Code::Blocks plugin.\n\n");
+    if (PLATFORM == PLATFORM_MSW)
+    {
+        intro_msg += _T("\nVERY IMPORTANT NOTE:\n\n" +
 						"Code::Blocks is built with the GNU GCC compiler and links to\n" +
 						"the monolithic unicode wxWidgets DLL.\n" +
 						"This means that you must have exactly this setup to be able to\n" +
 						"build the generated plugin.\n" +
 						"You must also have defined two global variables:\n" +
 						"   1. $(#cb) pointing to Code::Blocks base dir (where CodeBlocks.cbp is)\n" +
-						"   2. $(#wx) pointing to wxWidgets base directory\n\n\n" +
-						"When you 're ready to proceed, please click \"Next\"...");
+						"   2. $(#wx) pointing to wxWidgets base directory\n\n\n");
+    }
+    intro_msg += _T("When you 're ready to proceed, please click \"Next\"...");
 
 	Wizard.AddIntroPage(intro_msg);
 	Wizard.AddProjectPathPage();
@@ -157,45 +160,67 @@ function GetGeneratedFile(file_index)
 // setup the project options
 function SetupProject(project)
 {
-    // NOTE: windows setup only for the time being
-
-    project.AddCompilerOption(_T("-DBUILDING_PLUGIN"));
-    project.AddCompilerOption(_T("-DHAVE_W32API_H"));
-    project.AddCompilerOption(_T("-D__WXMSW__"));
-    project.AddCompilerOption(_T("-DWXUSINGDLL"));
-    project.AddCompilerOption(_T("-DTIXML_USE_STL"));
-    project.AddCompilerOption(_T("-DcbDEBUG"));
-    project.AddCompilerOption(_T("-DCB_PRECOMP"));
-    project.AddCompilerOption(_T("-DWX_PRECOMP"));
-    project.AddCompilerOption(_T("-DwxUSE_UNICODE"));
-    project.AddCompilerOption(_T("-pipe"));
-    project.AddCompilerOption(_T("-mthreads"));
-    project.AddCompilerOption(_T("-fmessage-length=0"));
-    project.AddCompilerOption(_T("-fexceptions"));
-    project.AddCompilerOption(_T("-Winvalid-pch"));
-
-    project.AddIncludeDir(_T("$(#cb)\\sdk"));
-    project.AddIncludeDir(_T("$(#cb)\\sdk\\wxscintilla\\include"));
-    project.AddIncludeDir(_T("$(#wx.include)"));
-    project.AddIncludeDir(_T("$(#wx.lib)\\gcc_dll\\mswu"));
-
-    project.AddLinkLib(_T("codeblocks"));
-    project.AddLinkLib(_T("wxmsw26u"));
-
-    project.AddLibDir(_T("$(#cb)\\devel"));
-    project.AddLibDir(_T("$(#wx.lib)\\gcc_dll"));
-
     local target = project.GetBuildTarget(_T("Debug"));
     if (!IsNull(target))
     {
-        target.SetTargetType(ttDynamicLib);
-        target.SetOutputFilename(target.GetWorkingDir() + wxFILE_SEP_PATH + target.SuggestOutputFilename());
-        target.SetCreateDefFile(false);
-        target.SetCreateStaticLib(false);
+        SetupTarget(target, true);
     }
 
     project.RenameBuildTarget(_T("Debug"), PluginSettings.Name);
     project.RemoveBuildTarget(_T("Release"));
+
+    return true;
+}
+
+function SetupTarget(target,is_debug)
+{
+    if (IsNull(target))
+        return false;
+
+    if (PLATFORM == PLATFORM_MSW)
+    {
+        target.AddCompilerOption(_T("-DBUILDING_PLUGIN"));
+        target.AddCompilerOption(_T("-DHAVE_W32API_H"));
+        target.AddCompilerOption(_T("-D__WXMSW__"));
+        target.AddCompilerOption(_T("-DWXUSINGDLL"));
+        target.AddCompilerOption(_T("-DTIXML_USE_STL"));
+        target.AddCompilerOption(_T("-DcbDEBUG"));
+        target.AddCompilerOption(_T("-DCB_PRECOMP"));
+        target.AddCompilerOption(_T("-DWX_PRECOMP"));
+        target.AddCompilerOption(_T("-DwxUSE_UNICODE"));
+        target.AddCompilerOption(_T("-pipe"));
+        target.AddCompilerOption(_T("-mthreads"));
+        target.AddCompilerOption(_T("-fmessage-length=0"));
+        target.AddCompilerOption(_T("-fexceptions"));
+        target.AddCompilerOption(_T("-Winvalid-pch"));
+
+        target.AddIncludeDir(_T("$(#cb)\\sdk"));
+        target.AddIncludeDir(_T("$(#cb)\\sdk\\wxscintilla\\include"));
+        target.AddIncludeDir(_T("$(#wx.include)"));
+        target.AddIncludeDir(_T("$(#wx.lib)\\gcc_dll\\mswu"));
+
+        target.AddLinkLib(_T("codeblocks"));
+        target.AddLinkLib(_T("wxmsw26u"));
+
+        target.AddLibDir(_T("$(#cb)\\devel"));
+        target.AddLibDir(_T("$(#wx.lib)\\gcc_dll"));
+    }
+    else
+    {
+        target.AddCompilerOption(_T("`pkg-config --cflags codeblocks`"));
+        target.AddCompilerOption(_T("`wx-config --cflags`"));
+
+        target.AddLinkerOption(_T("`pkg-config --libs codeblocks`"));
+        target.AddLinkerOption(_T("`wx-config --libs`"));
+    }
+
+    if (is_debug)
+        DebuggingSymbolsOn(target, Wizard.GetCompilerID());
+
+    target.SetTargetType(ttDynamicLib);
+    target.SetOutputFilename(target.GetWorkingDir() + wxFILE_SEP_PATH + target.SuggestOutputFilename());
+    target.SetCreateDefFile(false);
+    target.SetCreateStaticLib(false);
 
     return true;
 }
