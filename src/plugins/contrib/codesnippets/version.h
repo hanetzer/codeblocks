@@ -1,6 +1,6 @@
+// ----------------------------------------------------------------------------
 /*
 	This file is part of Code Snippets, a plugin for Code::Blocks
-	Copyright (C) 2006 Arto Jonsson
 	Copyright (C) 2007 Pecan Heber
 
 	This program is free software; you can redistribute it and/or
@@ -17,31 +17,48 @@
 	along with this program; if not, write to the Free Software
 	Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
-// RCS-ID: $Id: snippetitemdata.cpp 28 2007-04-01 14:32:57Z Pecan $
+// ----------------------------------------------------------------------------
+// RCS-ID: $Id: version.h 33 2007-04-03 02:45:43Z Pecan $
 
-#ifdef WX_PRECOMP
-    #include "wx_pch.h"
-#else
+#ifndef VERSION_H
+#define VERSION_H
+// ---------------------------------------------------------------------------
+// Logging / debugging
+// ---------------------------------------------------------------------------
+//debugging control
+#include <wx/log.h>
+
+#define LOGIT wxLogDebug
+#if defined(LOGGING)
+ #define LOGGING 1
+ #undef LOGIT
+ #define LOGIT wxLogMessage
+ #define TRAP asm("int3")
 #endif
 
-#include "snippetitemdata.h"
-
 // ----------------------------------------------------------------------------
-SnippetItemData::SnippetItemData(SnippetItemType type) : m_Type(type), m_Snippet(wxEmptyString)
+   #if LOGGING
+	extern wxLogWindow*    m_pLog;
+   #endif
 // ----------------------------------------------------------------------------
-{
-}
-
-// ----------------------------------------------------------------------------
-SnippetItemData::SnippetItemData(SnippetItemType type, wxString snippet) : m_Type(type), m_Snippet(snippet)
+class AppVersion
 // ----------------------------------------------------------------------------
 {
-}
+    public:
+        AppVersion();
+       ~AppVersion();
 
-// ----------------------------------------------------------------------------
-SnippetItemData::~SnippetItemData()
-// ----------------------------------------------------------------------------
-{
-	//dtor
-}
+    wxString GetVersion(){return m_version;}
+
+    wxString m_version;
+
+    protected:
+    private:
+};
+
+#include <wx/string.h>
+//-----Release-Feature-Fix------------------
+#define VERSION wxT("1.1.52 2007/04/2")
+//------------------------------------------
+#endif // VERSION_H
 
