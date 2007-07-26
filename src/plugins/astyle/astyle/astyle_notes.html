@@ -21,6 +21,44 @@
 <h1>Artistic Style Release Notes</h1>
 <p>&nbsp;</p>
 <blockquote>
+    <h3>Artistic Style 1.21&nbsp; (June 2007)</h3>
+    <ul>
+		<li>New function, formatArrayBrackets, 
+		to improve array formatting and indentation.<li>Attach brackets to lines with end-of-line comments.
+		<li>Break brackets from lines with end-of-line comments without bringing 
+		the comments with them.<li>Move ASFormatter and ASBeautifier static initialization 
+		from constructor to &quot;init&quot; function to allow for changes in the file type.<li>Add --preserve-date (-Z) option.<li>New functions formatBrackets, padOperators and PadParens to improve decomposition.<li>Add identification of file 
+		mode (C, C#, or Java) to file open procedure.<li>Keywords in headers now depend on file 
+		mode (C, C#, or 
+		Java) and object type (formatter or beautifier).<li>Remove short options -c (mode=c) and -j 
+		(mode=java) since the mode is now set automatically from the file extension.<li>Change Linux bracket formatting for header files.<li>Fix formatting of empty blocks.<li>Expand BracketType definition.
+		<li>Fix &quot;do not change&quot; bracket mode inconsistencies with other bracket 
+		formatting.
+		<li>Remove mode=java from Java predefined style.<li>Change long option --errors-to-standard-output to --errors-to-stdout.<li>Fix breaking of struct variable declaration.<li>Add support for OpenVMS compiler.<li>Inline the ASBeautifier function isLegalNameChar.<li>Fix no-indent of block comments starting in 
+		column 1 or 2.<li>Fix formatting of Java anonymous class defined as&nbsp; a method call 
+		parameter (bracket within a paren).
+		<li>Fix indentation for Java &quot;for each&quot; statement.<li>Fix bracket being attached to a preprocessor directive.<li>Fix extra indent of single line blocks when a previous line 
+        probation header is found.<li>Fix formatting of block comments when continuation lines have 
+        different leading whitespace characters.<li>Fix deleting a blank line before a bracket when brackets=attach.<li>Fix segmentation fault on preprocessor continuation line followed by an empty line.<li>Fix bad bracket indent that sometimes occurs when brackets=attach and it 
+        cannot be attached.<li>Fix trimming of comment lines.
+        <li>Fix incorrect identification of &quot;new&quot; operator pointers as 
+		calculations.
+		<li>Fix incorrect identification of assignments as command type bracket.<li>Fix incorrect indentation of pointers following a dot operator or 
+		pointer.<li>Fix attaching &quot;else if&quot; statements to a single line block.
+		<li>Fix header recognition problem when header is proceeded by a tab 
+		instead of a space.
+		<li>Fix line break when colon is followed by a comment.<li>Fix 
+		ASBeautifier not identifying a template definition.<li>Change indents around the end of line to two indents.<li>Change header includes to fix header dependencies for Linux GCC 4.3.<li>Add output line number 
+        for debugging.<li>Add filename to trace output.<li>Add trace for arrays.<li>Add trace for bracketType .<li>Fix no-indent comment in a #else preprocessor directive.<li>Fix block comment continuation line indent when block comments do 
+		not start the line.<li>Adjust position of block comments (/*) when padding is added or deleted.
+		<li>Fix incorrect formatting if &quot;return&quot; is included in a function name.
+		<li>Fix incorrect padding if template depth is greater that one and pad=oper is used.
+		<li>Fix incorrect bracket type identification when bracket is followed 
+		by a comment.<li>Fix incorrect bracket type identification when a &quot;const&quot; 
+		method is declared.<li>Fix incorrect bracket type identification when pre-definition header is inside a paren.<li>Fix deleting a space when attaching a bracket with line comments.<li>Fix indentation when the conditional 
+		&quot;?&quot; operator is used in a single line 
+		statement.<li>Fix indentation when single line &quot;if&quot; statement is used.<li>Add pointers, multiply operators, and selected variables to do not unpad in paren unpad 
+		procedure.<li>Return exit code 0 for --version and --help.</ul>
     <h3>Artistic Style 1.20.2&nbsp; (February 2007)</h3>
     <ul>
 		<li>Fix problems with the new stream I/O procedure added in release 
