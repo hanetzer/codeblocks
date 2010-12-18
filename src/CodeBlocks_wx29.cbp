@@ -127,27 +127,6 @@
 					<Add library="gdi32" />
 				</Linker>
 			</Target>
-			<Target title="wxpropgrid">
-				<Option output="devel\wxpropgrid" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="devel" />
-				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option createStaticLib="1" />
-				<Compiler>
-					<Add option="-DWXMAKINGDLL_PROPGRID" />
-					<Add option="-DwxPG_USE_WXMODULE=0" />
-					<Add directory="sdk\wxpropgrid\include" />
-					<Add directory="include" />
-				</Compiler>
-				<ResourceCompiler>
-					<Add directory="sdk\wxpropgrid\include" />
-				</ResourceCompiler>
-				<Linker>
-					<Add option="-Wl,--enable-auto-image-base" />
-					<Add option="-Wl,--add-stdcall-alias" />
-					<Add option="-Wl,--enable-auto-import" />
-				</Linker>
-			</Target>
 			<Target title="sdk">
 				<Option output="devel\codeblocks" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="devel" />
@@ -161,7 +140,7 @@
 					<Add option="-DEXPORT_LIB" />
 					<Add option="-DEXPORT_EVENTS" />
 					<Add option="-DWXMAKINGDLL_PROPGRID" />
-					<Add option="-DwxPG_USE_WXMODULE=0" />
+					<Add option="-DwxPG_USE_WXMODULE=1" />
 					<Add option="-DWXMAKINGDLL_SCI" />
 					<Add directory="include" />
 					<Add directory="include\tinyxml" />
@@ -169,7 +148,6 @@
 					<Add directory="include\scripting\include" />
 					<Add directory="include\scripting\sqplus" />
 					<Add directory="include\mozilla_chardet" />
-					<Add directory="sdk\wxpropgrid\include" />
 				</Compiler>
 				<Linker>
 					<Add option="-Wl,--enable-auto-image-base" />
@@ -179,7 +157,6 @@
 					<Add library="shfolder" />
 					<Add library="txml" />
 					<Add library="wxscintilla_cb" />
-					<Add library="wxpropgrid" />
 					<Add library="sqplus" />
 					<Add library="sqstdlib" />
 					<Add library="squirrel" />
@@ -203,7 +180,7 @@
 				<Compiler>
 					<Add option="-DBUILDING_PLUGIN" />
 					<Add option="-DWXMAKINGDLL_PROPGRID" />
-					<Add option="-DwxPG_USE_WXMODULE=0" />
+					<Add option="-DwxPG_USE_WXMODULE=1" />
 					<Add directory="include" />
 					<Add directory="include\scripting\include" />
 					<Add directory="include\scripting\sqplus" />
@@ -212,7 +189,6 @@
 				<Linker>
 					<Add option="-Wl,--enable-auto-import" />
 					<Add library="codeblocks" />
-					<Add library="wxpropgrid" />
 					<Add library="shfolder" />
 					<Add library="kernel32" />
 					<Add library="user32" />
@@ -240,7 +216,7 @@
 				<Compiler>
 					<Add option="-DBUILDING_PLUGIN" />
 					<Add option="-DWXMAKINGDLL_PROPGRID" />
-					<Add option="-DwxPG_USE_WXMODULE=0" />
+					<Add option="-DwxPG_USE_WXMODULE=1" />
 					<Add directory="include" />
 					<Add directory="plugins\astyle\astyle" />
 				</Compiler>
@@ -276,7 +252,7 @@
 				<Compiler>
 					<Add option="-DBUILDING_PLUGIN" />
 					<Add option="-DWXMAKINGDLL_PROPGRID" />
-					<Add option="-DwxPG_USE_WXMODULE=0" />
+					<Add option="-DwxPG_USE_WXMODULE=1" />
 					<Add directory="include" />
 					<Add directory="plugins\compilergcc\depslib\src" />
 					<Add directory="include\scripting\include" />
@@ -303,7 +279,7 @@
 				<Compiler>
 					<Add option="-DBUILDING_PLUGIN" />
 					<Add option="-DWXMAKINGDLL_PROPGRID" />
-					<Add option="-DwxPG_USE_WXMODULE=0" />
+					<Add option="-DwxPG_USE_WXMODULE=1" />
 					<Add directory="include" />
 					<Add directory="include\scripting\include" />
 					<Add directory="include\scripting\sqplus" />
@@ -327,7 +303,7 @@
 				<Compiler>
 					<Add option="-DBUILDING_PLUGIN" />
 					<Add option="-DWXMAKINGDLL_PROPGRID" />
-					<Add option="-DwxPG_USE_WXMODULE=0" />
+					<Add option="-DwxPG_USE_WXMODULE=1" />
 					<Add directory="include" />
 					<Add directory="include\mozilla_chardet" />
 				</Compiler>
@@ -350,7 +326,7 @@
 				<Compiler>
 					<Add option="-DBUILDING_PLUGIN" />
 					<Add option="-DWXMAKINGDLL_PROPGRID" />
-					<Add option="-DwxPG_USE_WXMODULE=0" />
+					<Add option="-DwxPG_USE_WXMODULE=1" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
@@ -372,7 +348,7 @@
 				<Compiler>
 					<Add option="-DBUILDING_PLUGIN" />
 					<Add option="-DWXMAKINGDLL_PROPGRID" />
-					<Add option="-DwxPG_USE_WXMODULE=0" />
+					<Add option="-DwxPG_USE_WXMODULE=1" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
@@ -394,7 +370,7 @@
 				<Compiler>
 					<Add option="-DBUILDING_PLUGIN" />
 					<Add option="-DWXMAKINGDLL_PROPGRID" />
-					<Add option="-DwxPG_USE_WXMODULE=0" />
+					<Add option="-DwxPG_USE_WXMODULE=1" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
@@ -416,7 +392,7 @@
 				<Compiler>
 					<Add option="-DBUILDING_PLUGIN" />
 					<Add option="-DWXMAKINGDLL_PROPGRID" />
-					<Add option="-DwxPG_USE_WXMODULE=0" />
+					<Add option="-DwxPG_USE_WXMODULE=1" />
 					<Add directory="include" />
 					<Add directory="include\scripting\include" />
 					<Add directory="include\scripting\sqplus" />
@@ -440,7 +416,7 @@
 				<Compiler>
 					<Add option="-DBUILDING_PLUGIN" />
 					<Add option="-DWXMAKINGDLL_PROPGRID" />
-					<Add option="-DwxPG_USE_WXMODULE=0" />
+					<Add option="-DwxPG_USE_WXMODULE=1" />
 					<Add directory="include" />
 					<Add directory="include\mozilla_chardet" />
 				</Compiler>
@@ -463,7 +439,7 @@
 				<Compiler>
 					<Add option="-DBUILDING_PLUGIN" />
 					<Add option="-DWXMAKINGDLL_PROPGRID" />
-					<Add option="-DwxPG_USE_WXMODULE=0" />
+					<Add option="-DwxPG_USE_WXMODULE=1" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
@@ -485,7 +461,7 @@
 				<Compiler>
 					<Add option="-DBUILDING_PLUGIN" />
 					<Add option="-DWXMAKINGDLL_PROPGRID" />
-					<Add option="-DwxPG_USE_WXMODULE=0" />
+					<Add option="-DwxPG_USE_WXMODULE=1" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
@@ -507,7 +483,7 @@
 				<Compiler>
 					<Add option="-DBUILDING_PLUGIN" />
 					<Add option="-DWXMAKINGDLL_PROPGRID" />
-					<Add option="-DwxPG_USE_WXMODULE=0" />
+					<Add option="-DwxPG_USE_WXMODULE=1" />
 					<Add directory="include" />
 					<Add directory="include\mozilla_chardet" />
 				</Compiler>
@@ -530,7 +506,7 @@
 				<Compiler>
 					<Add option="-DBUILDING_PLUGIN" />
 					<Add option="-DWXMAKINGDLL_PROPGRID" />
-					<Add option="-DwxPG_USE_WXMODULE=0" />
+					<Add option="-DwxPG_USE_WXMODULE=1" />
 					<Add directory="include" />
 					<Add directory="include\scripting\include" />
 					<Add directory="include\scripting\sqplus" />
@@ -548,14 +524,14 @@
 			</Target>
 			<Environment>
 				<Variable name="WX_SUFFIX" value="u" />
-				<Variable name="WX_VERSION" value="28" />
+				<Variable name="WX_VERSION" value="29" />
 				<Variable name="WX_CFG" value="" />
 			</Environment>
 		</Build>
 		<VirtualTargets>
-			<Add alias="All" targets="tinyXML;AutoRevision;ConsoleRunner;Squirrel;Squirrel std lib;SqPlus;scintilla;wxpropgrid;sdk;src;AStyle;Compiler depslib;Compiler;Debugger;Code-completion;Class wizard;Default MIME handler;Open files list;Scripted wizard;To-do;Autosave;XP look &amp; feel;Projects-workspaces importer;Abbreviations;" />
+			<Add alias="All" targets="tinyXML;AutoRevision;ConsoleRunner;Squirrel;Squirrel std lib;SqPlus;scintilla;sdk;src;AStyle;Compiler depslib;Compiler;Debugger;Code-completion;Class wizard;Default MIME handler;Open files list;Scripted wizard;To-do;Autosave;XP look &amp; feel;Projects-workspaces importer;Abbreviations;" />
 			<Add alias="Core app &amp; plugins" targets="sdk;src;AStyle;Autosave;Compiler depslib;Compiler;Debugger;Code-completion;Class wizard;Default MIME handler;Projects-workspaces importer;Scripted wizard;Open files list;To-do;XP look &amp; feel;" />
-			<Add alias="Third-party libs" targets="tinyXML;AutoRevision;ConsoleRunner;Squirrel;Squirrel std lib;SqPlus;scintilla;wxpropgrid;Compiler depslib;" />
+			<Add alias="Third-party libs" targets="tinyXML;AutoRevision;ConsoleRunner;Squirrel;Squirrel std lib;SqPlus;scintilla;Compiler depslib;" />
 		</VirtualTargets>
 		<Compiler>
 			<Add option="-Wall" />
@@ -572,23 +548,23 @@
 			<Add option="-DCB_PRECOMP" />
 			<Add option="-DWX_PRECOMP" />
 			<Add option="-DwxUSE_UNICODE" />
-			<Add directory="$(#WX.include)" />
-			<Add directory="$(#wx)\contrib\include" />
-			<Add directory="$(#WX.lib)\gcc_dll$(WX_CFG)\msw$(WX_SUFFIX)" />
+			<Add option="-DwxDEBUG_LEVEL=0" />
+			<Add directory="$(#WX29.include)" />
+			<Add directory="$(#WX29)\contrib\include" />
+			<Add directory="$(#WX29.lib)\gcc_dll$(WX_CFG)\msw$(WX_SUFFIX)" />
 			<Add directory="sdk\wxscintilla\include" />
-			<Add directory="sdk\wxpropgrid\include" />
 			<Add directory="include\tinyxml" />
 		</Compiler>
 		<ResourceCompiler>
-			<Add directory="$(#WX.include)" />
-			<Add directory="$(#wx)\contrib\include" />
-			<Add directory="$(#wx)\lib\gcc_dll$(WX_CFG)\msw$(WX_SUFFIX)" />
+			<Add directory="$(#WX29.include)" />
+			<Add directory="$(#WX29)\contrib\include" />
+			<Add directory="$(#WX29)\lib\gcc_dll$(WX_CFG)\msw$(WX_SUFFIX)" />
 		</ResourceCompiler>
 		<Linker>
 			<Add option="-mthreads" />
 			<Add library="wxmsw$(WX_VERSION)$(WX_SUFFIX)" />
 			<Add directory="base\tinyxml" />
-			<Add directory="$(#WX.lib)\gcc_dll$(WX_CFG)" />
+			<Add directory="$(#WX29.lib)\gcc_dll$(WX_CFG)" />
 		</Linker>
 		<Unit filename="base\exchndl\exchndl.c">
 			<Option compilerVar="CC" />
@@ -637,16 +613,10 @@
 		<Unit filename="include\backgroundthread.h">
 			<Option target="sdk" />
 		</Unit>
-		<Unit filename="include\backtracedlg.h">
-			<Option target="sdk" />
-		</Unit>
 		<Unit filename="include\base64.h">
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="include\blockallocated.h">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="include\breakpointsdlg.h">
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="include\cbauibook.h">
@@ -721,19 +691,7 @@
 		<Unit filename="include\confirmreplacedlg.h">
 			<Option target="sdk" />
 		</Unit>
-		<Unit filename="include\cpuregistersdlg.h">
-			<Option target="sdk" />
-		</Unit>
 		<Unit filename="include\crc32.h">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="include\debuggermanager.h">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="include\debuggermenu.h">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="include\disassemblydlg.h">
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="include\editarrayfiledlg.h">
@@ -743,9 +701,6 @@
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="include\editarraystringdlg.h">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="include\editbreakpointdlg.h">
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="include\editkeywordsdlg.h">
@@ -779,9 +734,6 @@
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="include\encodingdetector.h">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="include\examinememorydlg.h">
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="include\externaldepsdlg.h">
@@ -1133,9 +1085,6 @@
 		<Unit filename="include\templatemanager.h">
 			<Option target="sdk" />
 		</Unit>
-		<Unit filename="include\threadsdlg.h">
-			<Option target="sdk" />
-		</Unit>
 		<Unit filename="include\tinyxml\tinystr.h">
 			<Option target="tinyXML" />
 		</Unit>
@@ -1152,9 +1101,6 @@
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="include\virtualbuildtargetsdlg.h">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="include\watchesdlg.h">
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="include\workspaceloader.h">
@@ -1668,6 +1614,18 @@
 		<Unit filename="plugins\compilergcc\resources\compiler_toolbar_16x16.xrc">
 			<Option target="Compiler" />
 		</Unit>
+		<Unit filename="plugins\debuggergdb\backtracedlg.cpp">
+			<Option target="Debugger" />
+		</Unit>
+		<Unit filename="plugins\debuggergdb\backtracedlg.h">
+			<Option target="Debugger" />
+		</Unit>
+		<Unit filename="plugins\debuggergdb\breakpointsdlg.cpp">
+			<Option target="Debugger" />
+		</Unit>
+		<Unit filename="plugins\debuggergdb\breakpointsdlg.h">
+			<Option target="Debugger" />
+		</Unit>
 		<Unit filename="plugins\debuggergdb\cdb_commands.h">
 			<Option target="Debugger" />
 		</Unit>
@@ -1675,6 +1633,12 @@
 			<Option target="Debugger" />
 		</Unit>
 		<Unit filename="plugins\debuggergdb\cdb_driver.h">
+			<Option target="Debugger" />
+		</Unit>
+		<Unit filename="plugins\debuggergdb\cpuregistersdlg.cpp">
+			<Option target="Debugger" />
+		</Unit>
+		<Unit filename="plugins\debuggergdb\cpuregistersdlg.h">
 			<Option target="Debugger" />
 		</Unit>
 		<Unit filename="plugins\debuggergdb\databreakpointdlg.cpp">
@@ -1725,6 +1689,18 @@
 		<Unit filename="plugins\debuggergdb\debuggertree.h">
 			<Option target="Debugger" />
 		</Unit>
+		<Unit filename="plugins\debuggergdb\disassemblydlg.cpp">
+			<Option target="Debugger" />
+		</Unit>
+		<Unit filename="plugins\debuggergdb\disassemblydlg.h">
+			<Option target="Debugger" />
+		</Unit>
+		<Unit filename="plugins\debuggergdb\editbreakpointdlg.cpp">
+			<Option target="Debugger" />
+		</Unit>
+		<Unit filename="plugins\debuggergdb\editbreakpointdlg.h">
+			<Option target="Debugger" />
+		</Unit>
 		<Unit filename="plugins\debuggergdb\editwatchdlg.cpp">
 			<Option target="Debugger" />
 		</Unit>
@@ -1735,6 +1711,12 @@
 			<Option target="Debugger" />
 		</Unit>
 		<Unit filename="plugins\debuggergdb\editwatchesdlg.h">
+			<Option target="Debugger" />
+		</Unit>
+		<Unit filename="plugins\debuggergdb\examinememorydlg.cpp">
+			<Option target="Debugger" />
+		</Unit>
+		<Unit filename="plugins\debuggergdb\examinememorydlg.h">
 			<Option target="Debugger" />
 		</Unit>
 		<Unit filename="plugins\debuggergdb\gdb_commands.h">
@@ -1752,16 +1734,16 @@
 		<Unit filename="plugins\debuggergdb\gdb_tipwindow.h">
 			<Option target="Debugger" />
 		</Unit>
-		<Unit filename="plugins\debuggergdb\parsewatchvalue.cpp">
-			<Option target="Debugger" />
-		</Unit>
-		<Unit filename="plugins\debuggergdb\parsewatchvalue.h">
-			<Option target="Debugger" />
-		</Unit>
 		<Unit filename="plugins\debuggergdb\remotedebugging.h">
 			<Option target="Debugger" />
 		</Unit>
 		<Unit filename="plugins\debuggergdb\resources\backtrace.xrc">
+			<Option target="Debugger" />
+		</Unit>
+		<Unit filename="plugins\debuggergdb\resources\breakpoints.xrc">
+			<Option target="Debugger" />
+		</Unit>
+		<Unit filename="plugins\debuggergdb\resources\debugger_menu.xrc">
 			<Option target="Debugger" />
 		</Unit>
 		<Unit filename="plugins\debuggergdb\resources\debugger_options_dlg.xrc">
@@ -1770,10 +1752,28 @@
 		<Unit filename="plugins\debuggergdb\resources\debugger_project_options_dlg.xrc">
 			<Option target="Debugger" />
 		</Unit>
+		<Unit filename="plugins\debuggergdb\resources\debugger_toolbar.xrc">
+			<Option target="Debugger" />
+		</Unit>
+		<Unit filename="plugins\debuggergdb\resources\debugger_toolbar_16x16.xrc">
+			<Option target="Debugger" />
+		</Unit>
+		<Unit filename="plugins\debuggergdb\resources\disassembly.xrc">
+			<Option target="Debugger" />
+		</Unit>
 		<Unit filename="plugins\debuggergdb\resources\edit_watches_dlg.xrc">
 			<Option target="Debugger" />
 		</Unit>
+		<Unit filename="plugins\debuggergdb\resources\memdump.xrc">
+			<Option target="Debugger" />
+		</Unit>
 		<Unit filename="plugins\debuggergdb\resources\threads.xrc">
+			<Option target="Debugger" />
+		</Unit>
+		<Unit filename="plugins\debuggergdb\threadsdlg.cpp">
+			<Option target="Debugger" />
+		</Unit>
+		<Unit filename="plugins\debuggergdb\threadsdlg.h">
 			<Option target="Debugger" />
 		</Unit>
 		<Unit filename="plugins\defaultmimehandler\EmbeddedHtmlPanel.cpp">
@@ -2049,16 +2049,10 @@
 		<Unit filename="sdk\autodetectcompilers.cpp">
 			<Option target="sdk" />
 		</Unit>
-		<Unit filename="sdk\backtracedlg.cpp">
-			<Option target="sdk" />
-		</Unit>
 		<Unit filename="sdk\base64.cpp">
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="sdk\blockallocated.cpp">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="sdk\breakpointsdlg.cpp">
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="sdk\cbauibook.cpp">
@@ -2125,19 +2119,7 @@
 		<Unit filename="sdk\confirmreplacedlg.cpp">
 			<Option target="sdk" />
 		</Unit>
-		<Unit filename="sdk\cpuregistersdlg.cpp">
-			<Option target="sdk" />
-		</Unit>
 		<Unit filename="sdk\crc32.cpp">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="sdk\debuggermanager.cpp">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="sdk\debuggermenu.cpp">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="sdk\disassemblydlg.cpp">
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="sdk\editarrayfiledlg.cpp">
@@ -2147,9 +2129,6 @@
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="sdk\editarraystringdlg.cpp">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="sdk\editbreakpointdlg.cpp">
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="sdk\editkeywordsdlg.cpp">
@@ -2183,9 +2162,6 @@
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="sdk\encodingdetector.cpp">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="sdk\examinememorydlg.cpp">
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="sdk\externaldepsdlg.cpp">
@@ -2332,9 +2308,6 @@
 		<Unit filename="sdk\newfromtemplatedlg.cpp">
 			<Option target="sdk" />
 		</Unit>
-		<Unit filename="sdk\nullptr.cpp">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
 		<Unit filename="sdk\personalitymanager.cpp">
 			<Option target="sdk" />
 		</Unit>
@@ -2389,9 +2362,6 @@
 		<Unit filename="sdk\resources\auto_detect_compilers.xrc">
 			<Option target="sdk" />
 		</Unit>
-		<Unit filename="sdk\resources\breakpoints.xrc">
-			<Option target="sdk" />
-		</Unit>
 		<Unit filename="sdk\resources\configure_tools.xrc">
 			<Option target="sdk" />
 		</Unit>
@@ -2399,18 +2369,6 @@
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="sdk\resources\confirm_replace_multiple.xrc">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="sdk\resources\debugger_menu.xrc">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="sdk\resources\debugger_toolbar.xrc">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="sdk\resources\debugger_toolbar_16x16.xrc">
-			<Option target="sdk" />
-		</Unit>
-		<Unit filename="sdk\resources\disassembly.xrc">
 			<Option target="sdk" />
 		</Unit>
 		<Unit filename="sdk\resources\edit_array_order.xrc">
@@ -2617,9 +2575,6 @@
 		<Unit filename="sdk\resources\lexers\lexer_xml.xml">
 			<Option target="scintilla" />
 		</Unit>
-		<Unit filename="sdk\resources\memdump.xrc">
-			<Option target="sdk" />
-		</Unit>
 		<Unit filename="sdk\resources\new_from_template.xrc">
 			<Option target="sdk" />
 		</Unit>
@@ -2773,9 +2728,6 @@
 		<Unit filename="sdk\templatemanager.cpp">
 			<Option target="sdk" />
 		</Unit>
-		<Unit filename="sdk\threadsdlg.cpp">
-			<Option target="sdk" />
-		</Unit>
 		<Unit filename="sdk\toolsmanager.cpp">
 			<Option target="sdk" />
 		</Unit>
@@ -2785,62 +2737,8 @@
 		<Unit filename="sdk\virtualbuildtargetsdlg.cpp">
 			<Option target="sdk" />
 		</Unit>
-		<Unit filename="sdk\watchesdlg.cpp">
-			<Option target="sdk" />
-		</Unit>
 		<Unit filename="sdk\workspaceloader.cpp">
 			<Option target="sdk" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\include\wx\propgrid\advprops.h">
-			<Option target="wxpropgrid" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\include\wx\propgrid\editors.h">
-			<Option target="wxpropgrid" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\include\wx\propgrid\extras.h">
-			<Option target="wxpropgrid" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\include\wx\propgrid\manager.h">
-			<Option target="wxpropgrid" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\include\wx\propgrid\odcombo.h">
-			<Option target="wxpropgrid" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\include\wx\propgrid\propdev.h">
-			<Option target="wxpropgrid" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\include\wx\propgrid\propgrid.h">
-			<Option target="wxpropgrid" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\include\wx\propgrid\props.h">
-			<Option target="wxpropgrid" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\include\wx\propgrid\xh_propgrid.h">
-			<Option target="wxpropgrid" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\src\advprops.cpp">
-			<Option target="wxpropgrid" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\src\editors.cpp">
-			<Option target="wxpropgrid" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\src\extras.cpp">
-			<Option target="wxpropgrid" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\src\manager.cpp">
-			<Option target="wxpropgrid" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\src\odcombo.cpp">
-			<Option target="wxpropgrid" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\src\propgrid.cpp">
-			<Option target="wxpropgrid" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\src\props.cpp">
-			<Option target="wxpropgrid" />
-		</Unit>
-		<Unit filename="sdk\wxpropgrid\src\xh_propgrid.cpp">
-			<Option target="wxpropgrid" />
 		</Unit>
 		<Unit filename="sdk\wxscintilla\include\wx\wxscintilla.h">
 			<Option target="scintilla" />
