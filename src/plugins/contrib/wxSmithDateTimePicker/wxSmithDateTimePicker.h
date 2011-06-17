@@ -7,8 +7,8 @@
  * License:   GPL
  **************************************************************/
 
-#ifndef DATETIMEPICKER_H_INCLUDED
-#define DATETIMEPICKER_H_INCLUDED
+#ifndef WXSMITHDATETIMEPICKER_H_INCLUDED
+#define WXSMITHDATETIMEPICKER_H_INCLUDED
 
 // For compilers that support precompilation, includes <wx/wx.h>
 #include <wx/wxprec.h>
@@ -19,13 +19,13 @@
 
 #include <cbplugin.h> // for "class cbPlugin"
 
-class DateTimePicker : public cbPlugin
+class wxSmithDateTimePicker : public cbPlugin
 {
     public:
         /** Constructor. */
-        DateTimePicker();
+        wxSmithDateTimePicker();
         /** Destructor. */
-        virtual ~DateTimePicker();
+        virtual ~wxSmithDateTimePicker();
 
 
         /** This method is called by Code::Blocks and is used by the plugin
@@ -89,4 +89,4 @@ class DateTimePicker : public cbPlugin
 
 };
 
-#endif // DATETIMEPICKER_H_INCLUDED
+#endif // WXSMITHDATETIMEPICKER_H_INCLUDED

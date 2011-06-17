@@ -1,34 +1,34 @@
 #include <sdk.h> // Code::Blocks SDK
 #include <configurationpanel.h>
-#include "DateTimePicker.h"
+#include "wxSmithDateTimePicker.h"
 
 // Register the plugin with Code::Blocks.
 // We are using an anonymous namespace so we don't litter the global one.
 namespace
 {
-    PluginRegistrant<DateTimePicker> reg(_T("DateTimePicker"));
+    PluginRegistrant<wxSmithDateTimePicker> reg(_T("wxSmithDateTimePicker"));
 }
 
 
 
 // constructor
-DateTimePicker::DateTimePicker()
+wxSmithDateTimePicker::wxSmithDateTimePicker()
 {
     // Make sure our resources are available.
     // In the generated boilerplate code we have no resources but when
     // we add some, it will be nice that this code is in place already ;)
-    if(!Manager::LoadResource(_T("DateTimePicker.zip")))
+    if(!Manager::LoadResource(_T("wxSmithDateTimePicker.zip")))
     {
-        NotifyMissingFile(_T("DateTimePicker.zip"));
+        NotifyMissingFile(_T("wxSmithDateTimePicker.zip"));
     }
 }
 
 // destructor
-DateTimePicker::~DateTimePicker()
+wxSmithDateTimePicker::~wxSmithDateTimePicker()
 {
 }
 
-void DateTimePicker::OnAttach()
+void wxSmithDateTimePicker::OnAttach()
 {
     // do whatever initialization you need for your plugin
     // NOTE: after this function, the inherited member variable
@@ -38,7 +38,7 @@ void DateTimePicker::OnAttach()
     // (see: does not need) this plugin...
 }
 
-void DateTimePicker::OnRelease(bool appShutDown)
+void wxSmithDateTimePicker::OnRelease(bool appShutDown)
 {
     // do de-initialization for your plugin
     // if appShutDown is true, the plugin is unloaded because Code::Blocks is being shut down,
