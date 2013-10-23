@@ -3,13 +3,13 @@
 REM SETLOCAL assures environment variables created in a batch file are not exported to its calling environment
 setlocal
 
-echo Creating output64 directory tree
+echo Creating output30_64 directory tree
 
-set CB_DEVEL_RESDIR=devel64\share\CodeBlocks
-set CB_OUTPUT_RESDIR=output64\share\CodeBlocks
+set CB_DEVEL_RESDIR=devel30_64\share\CodeBlocks
+set CB_OUTPUT_RESDIR=output30_64\share\CodeBlocks
 
-if not exist output64 md output64\
-if not exist output64\share md output64\share\
+if not exist output30_64 md output30_64\
+if not exist output30_64\share md output30_64\share\
 if not exist %CB_OUTPUT_RESDIR% md %CB_OUTPUT_RESDIR%\
 if not exist %CB_OUTPUT_RESDIR%\compilers md %CB_OUTPUT_RESDIR%\compilers\
 if not exist %CB_OUTPUT_RESDIR%\lexers md %CB_OUTPUT_RESDIR%\lexers\
@@ -21,8 +21,8 @@ if not exist %CB_OUTPUT_RESDIR%\plugins md %CB_OUTPUT_RESDIR%\plugins\
 if not exist %CB_OUTPUT_RESDIR%\templates md %CB_OUTPUT_RESDIR%\templates\
 if not exist %CB_OUTPUT_RESDIR%\templates\wizard md %CB_OUTPUT_RESDIR%\templates\wizard\
 if not exist %CB_OUTPUT_RESDIR%\scripts md %CB_OUTPUT_RESDIR%\scripts\
-if not exist devel64 md devel64\
-if not exist devel64\share md devel64\share\
+if not exist devel30_64 md devel30_64\
+if not exist devel30_64\share md devel30_64\share\
 if not exist %CB_DEVEL_RESDIR% md %CB_DEVEL_RESDIR%\
 if not exist %CB_DEVEL_RESDIR%\compilers md %CB_DEVEL_RESDIR%\compilers\
 if not exist %CB_DEVEL_RESDIR%\lexers md %CB_DEVEL_RESDIR%\lexers\
@@ -69,8 +69,8 @@ cd ..\..\..\plugins\debuggergdb\resources
 cd ..\..\..
 
 echo Copying external exception handler
-if exist devel64\exchndl.dll xcopy /D /y devel64\exchndl.dll output64 > nul
-if exist devel64\exchndl.dll xcopy /D /y devel64\exchndl.dll devel64 > nul
+if exist devel30_64\exchndl.dll xcopy /D /y devel30_64\exchndl.dll output30_64 > nul
+if exist devel30_64\exchndl.dll xcopy /D /y devel30_64\exchndl.dll devel30_64 > nul
 echo Copying files
 xcopy /D /y %CB_DEVEL_RESDIR%\*.zip %CB_OUTPUT_RESDIR% > nul
 xcopy /D /y sdk\resources\lexers\lexer_* %CB_DEVEL_RESDIR%\lexers > nul
@@ -85,33 +85,33 @@ xcopy /D /y plugins\codecompletion\resources\images\*.png %CB_DEVEL_RESDIR%\imag
 xcopy /D /y plugins\codecompletion\resources\images\*.png %CB_OUTPUT_RESDIR%\images\codecompletion > nul
 xcopy /D /y plugins\compilergcc\resources\compilers\*.xml %CB_DEVEL_RESDIR%\compilers > nul
 xcopy /D /y plugins\compilergcc\resources\compilers\*.xml %CB_OUTPUT_RESDIR%\compilers > nul
-echo Makefile.am >  excludes64.txt
-echo Makefile.in >> excludes64.txt
-echo \.svn\      >> excludes64.txt
-echo *.gdb       >> excludes64.txt
-xcopy /D /y /s plugins\scriptedwizard\resources\* %CB_DEVEL_RESDIR%\templates\wizard /EXCLUDE:excludes64.txt >nul
-xcopy /D /y /s plugins\scriptedwizard\resources\* %CB_OUTPUT_RESDIR%\templates\wizard /EXCLUDE:excludes64.txt >nul
-xcopy /D /y templates\common\* %CB_OUTPUT_RESDIR%\templates /EXCLUDE:excludes64.txt > nul
-xcopy /D /y templates\win32\* %CB_OUTPUT_RESDIR%\templates /EXCLUDE:excludes64.txt > nul
-xcopy /D /y templates\common\* %CB_DEVEL_RESDIR%\templates /EXCLUDE:excludes64.txt > nul
-xcopy /D /y templates\win32\* %CB_DEVEL_RESDIR%\templates /EXCLUDE:excludes64.txt > nul
+echo Makefile.am >  excludes30_64.txt
+echo Makefile.in >> excludes30_64.txt
+echo \.svn\      >> excludes30_64.txt
+echo *.gdb       >> excludes30_64.txt
+xcopy /D /y /s plugins\scriptedwizard\resources\* %CB_DEVEL_RESDIR%\templates\wizard /EXCLUDE:excludes30_64.txt >nul
+xcopy /D /y /s plugins\scriptedwizard\resources\* %CB_OUTPUT_RESDIR%\templates\wizard /EXCLUDE:excludes30_64.txt >nul
+xcopy /D /y templates\common\* %CB_OUTPUT_RESDIR%\templates /EXCLUDE:excludes30_64.txt > nul
+xcopy /D /y templates\win32\* %CB_OUTPUT_RESDIR%\templates /EXCLUDE:excludes30_64.txt > nul
+xcopy /D /y templates\common\* %CB_DEVEL_RESDIR%\templates /EXCLUDE:excludes30_64.txt > nul
+xcopy /D /y templates\win32\* %CB_DEVEL_RESDIR%\templates /EXCLUDE:excludes30_64.txt > nul
 xcopy /D /y scripts\*.gdb %CB_OUTPUT_RESDIR% > nul
-xcopy /D /y scripts\* %CB_DEVEL_RESDIR%\scripts /EXCLUDE:excludes64.txt > nul
-xcopy /D /y scripts\* %CB_OUTPUT_RESDIR%\scripts /EXCLUDE:excludes64.txt > nul
-del excludes64.txt
+xcopy /D /y scripts\* %CB_DEVEL_RESDIR%\scripts /EXCLUDE:excludes30_64.txt > nul
+xcopy /D /y scripts\* %CB_OUTPUT_RESDIR%\scripts /EXCLUDE:excludes30_64.txt > nul
+del excludes30_64.txt
 xcopy /D /y tips.txt %CB_DEVEL_RESDIR% > nul
 xcopy /D /y tips.txt %CB_OUTPUT_RESDIR% > nul
-xcopy /D /y tools\ConsoleRunner\cb_console_runner64.exe devel64 > nul
-xcopy /D /y tools\ConsoleRunner\cb_console_runner64.exe output64 > nul
-if exist devel64\cb_console_runner.exe del devel64\cb_console_runner.exe > nul
-ren devel64\cb_console_runner64.exe cb_console_runner.exe > nul
-if exist output64\cb_console_runner.exe del output64\cb_console_runner.exe > nul
-ren output64\cb_console_runner64.exe cb_console_runner.exe > nul
-xcopy /D /y devel64\*.exe output64 > nul
-xcopy /D /y devel64\*.dll output64 > nul
+xcopy /D /y tools\ConsoleRunner\cb_console_runner30_64.exe devel30_64 > nul
+xcopy /D /y tools\ConsoleRunner\cb_console_runner30_64.exe output30_64 > nul
+if exist devel30_64\cb_console_runner.exe del devel30_64\cb_console_runner.exe > nul
+ren devel30_64\cb_console_runner30_64.exe cb_console_runner.exe > nul
+if exist output30_64\cb_console_runner.exe del output30_64\cb_console_runner.exe > nul
+ren output30_64\cb_console_runner30_64.exe cb_console_runner.exe > nul
+xcopy /D /y devel30_64\*.exe output30_64 > nul
+xcopy /D /y devel30_64\*.dll output30_64 > nul
 xcopy /D /y %CB_DEVEL_RESDIR%\plugins\*.dll %CB_OUTPUT_RESDIR%\plugins > nul
 
 echo Stripping debug info from output tree
-strip output64\*.exe
-strip output64\*.dll
+strip output30_64\*.exe
+strip output30_64\*.dll
 strip %CB_OUTPUT_RESDIR%\plugins\*.dll
